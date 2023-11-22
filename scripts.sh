@@ -3,7 +3,7 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 
 sudo apt update
-sudo apt install ripgrep fzf bat neofetch dirmngr gpg curl gawk gh golang-go fd-find eza -y
+sudo apt install ripgrep fzf bat neofetch dirmngr gpg curl gawk gh golang-go fd-find eza zsh -y
 
 # install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
@@ -69,6 +69,11 @@ echo '
 
 # zshrc
 echo '
+alias la="eza --icons --group-directories-first -lAh"
+alias l="eza --icons --group-directories-first -lh"
+alias ll="eza --icons --group-directories-first -lh"
+alias ls="eza --icons --group-directories-first"
+
 alias cat="batcat"
 alias vi="nvim"
 alias python="python3"
