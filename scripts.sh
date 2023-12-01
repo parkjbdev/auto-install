@@ -1,9 +1,12 @@
+sudo apt update
+sudo apt install gpg -y
+
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
 && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 
 sudo apt update
-sudo apt install ripgrep fzf bat neofetch dirmngr gpg curl gawk gh golang-go fd-find eza zsh -y
+sudo apt install ripgrep fzf bat neofetch dirmngr curl gawk gh golang-go fd-find zsh -y
 
 # install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
@@ -18,6 +21,9 @@ asdf global nodejs latest
 # install cargo
 curl https://sh.rustup.rs -sSf | sh
 echo PATH='"$HOME/.cargo/bin/:$PATH"' >> .zshenv
+
+# install eza
+cargo install eza
 
 # install ohmyzsh 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -35,16 +41,20 @@ bob use latest
 echo PATH='"$HOME/.local/share/bob/nvim-bin:$PATH"' >> .zshenv
 echo 'fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src' >> .zshenv
 
+# install my nvim config
+mkdir -p ~/.config
+git clone --branch lazy git@github.com:parkjbdev/nvim-config.git ~/.config/nvim
+
 # install logo-ls
-export GOPATH="$HOME/.go"
-git clone https://github.com/canta2899/logo-ls.git
-cd logo-ls
-go install .
-mkdir -p /usr/local/share/man/man1
-sudo mv logo-ls.1.gz /usr/local/share/man/man1
-cd ..
-rm -rf logo-ls
-export PATH="$HOME/.go/bin:$PATH" >> .zshenv
+# export GOPATH="$HOME/.go"
+# git clone https://github.com/canta2899/logo-ls.git
+# cd logo-ls
+# go install .
+# mkdir -p /usr/local/share/man/man1
+# sudo mv logo-ls.1.gz /usr/local/share/man/man1
+# cd ..
+# rm -rf logo-ls
+# export PATH="$HOME/.go/bin:$PATH" >> .zshenv
 
 # neofetch
 mkdir -p ~/.config/neofetch
@@ -96,3 +106,5 @@ echo "Done! Please restart your terminal."
 echo ""
 echo "========================================"
 echo ""
+
+chsh -s $(which zsh)
