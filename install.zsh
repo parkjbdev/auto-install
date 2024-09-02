@@ -102,6 +102,7 @@ fi
 echo -n "Installing lunarvim.."
 if [ ! $(which lvim) ]; then
   zsh -c "$(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)"
+  cp ./.config/lvim $HOME/.config/
   echo "Done"
 else
   echo "Skipping"
