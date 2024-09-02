@@ -77,7 +77,7 @@ if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
 fi
 
 echo -n "Installing zsh-syntax-highlighting.."
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
   echo "Done"
 else
@@ -99,9 +99,8 @@ fi
 
 # Install lunarvim
 echo -n "Installing lunarvim.."
-# if [[ ! -d "$HOME/.local/bin/lvim" ]]; then
 if [ ! $(which lvim) ]; then
-  sh -c "$(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)"
+  zsh -c "$(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)"
   echo "Done"
 else
   echo "Skipping"
