@@ -62,6 +62,7 @@ fi
 echo -n "Installing ohmyzsh.."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  cp ./.oh-my-zsh/custom/themes/robbyrussell.zsh-theme $HOME/.oh-my-zsh/custom/themes/
   echo "Done"
 else
   echo "Skipping"
