@@ -1,5 +1,7 @@
 . "$HOME/.cargo/env"
+
 . "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/plugins/java/set-java-home.zsh"
 
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin/:$PATH"
