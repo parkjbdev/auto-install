@@ -17,6 +17,27 @@ vim.g.skip_ts_context_commentstring_module = true
 --- Plugins
 lvim.plugins = {
   { "lambdalisue/vim-suda" },
+  { "tpope/vim-surround" },
+  {
+    "Isrothy/neominimap.nvim",
+    init = function()
+      -- The following options are recommended when layout == "float"
+      vim.opt.wrap = false
+      vim.opt.sidescrolloff = 36 -- Set a large value
+
+      --- Put your configuration here
+      ---@type Neominimap.UserConfig
+      vim.g.neominimap = {
+        auto_enable = true,
+        click = {
+          -- Enable mouse click on minimap
+          enabled = true, ---@type boolean
+          -- Automatically switch focus to minimap when clicked
+          auto_switch_focus = true, ---@type boolean
+        },
+      }
+    end,
+  },
   {
     "Pocco81/auto-save.nvim",
     config = function()
@@ -95,6 +116,32 @@ lvim.plugins = {
       vim.o.timeoutlen = 300
     end,
   },
+  {
+    "nvim-java/nvim-java",
+    dependencies = {
+      'nvim-java/lua-async-await',
+      'nvim-java/nvim-java-refactor',
+      'nvim-java/nvim-java-core',
+      'nvim-java/nvim-java-test',
+      'nvim-java/nvim-java-dap',
+      'MunifTanjim/nui.nvim',
+      'neovim/nvim-lspconfig',
+      'mfussenegger/nvim-dap',
+      -- {
+      --   'JavaHello/spring-boot.nvim',
+      --   commit = '218c0c26c14d99feca778e4d13f5ec3e8b1b60f0',
+      -- },
+      -- {
+      --   'williamboman/mason.nvim',
+      --   opts = {
+      --     registries = {
+      --       'github:nvim-java/mason-registry',
+      --       'github:mason-org/mason-registry',
+      --     },
+      --   },
+      -- },
+    },
+  },
 
   -- lazy.nvim
   -- {
@@ -149,16 +196,41 @@ lvim.plugins = {
 
 -- Bugfix
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
+local lspconfig = require "lspconfig"
 
-require("lspconfig").clangd.setup {
+lspconfig.clangd.setup {
   capabilities = cmp_nvim_lsp.default_capabilities(),
   cmd = { "clangd", "--offset-encoding=utf-16" },
 }
+
+lspconfig.arduino_language_server.setup {
+  cmd = { "arduino-language-server", "-cli-config", "$HOME/Library/Arduino15/arduino-cli.yaml", "-fqbn", "esp32:esp32:uPesy_wroom" }
+}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.emmet_ls.setup({
+  -- on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+  init_options = {
+    html = {
+      options = {
+        -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+        ["bem.enabled"] = true,
+      },
+    },
+  }
+})
+
 lvim.builtin.treesitter.ignore_install = { "dart" }
 
 -- Keybindings
 -- vim.keymap.set("n", "[b", "<cmd>bprevious<CR>")
 -- vim.keymap.set("n", "]b", "<cmd>bnext<CR>")
+vim.keymap.set("n", "tn", "<cmd>tabNext<CR>")
+vim.keymap.set("n", "tN", "<cmd>tabprevious<CR>")
 -- lvim.builtin.which_key.mappings["[b"] = {
 --   name = "Previous Buffer",
 --   b = { "<cmd>bprevious<cr>", "Previous Buffer" },
@@ -183,3 +255,9 @@ lvim.builtin.which_key.mappings["f"] = {
   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
   h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
 }
+
+-- local config = {
+--   cmd = {
+--     ""
+--   }
+-- }
