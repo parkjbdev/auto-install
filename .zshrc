@@ -18,6 +18,7 @@ alias ls="eza --icons --group-directories-first"
 alias cat="batcat" 
 alias vi="lvim" 
 alias python="python3" 
+alias fd="fdfind"
 
 export EDITOR="lvim" 
 export GPG_TTY=$(tty)

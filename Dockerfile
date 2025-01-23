@@ -1,7 +1,7 @@
 FROM debian
 
 RUN apt-get update && \
-  apt-get install -y gpg curl wget git ninja-build gettext cmake unzip build-essential ripgrep fzf bat neofetch dirmngr gawk golang-go fd-find openssh-server 
+  apt-get install -y gpg curl wget git ninja-build gettext cmake unzip build-essential ripgrep fzf bat neofetch dirmngr gawk golang-go fd-find openssh-server tmux
 
 # Install githubcli
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && \
@@ -34,21 +34,31 @@ asdf plugin add nodejs && \
 asdf install nodejs 22.13.0 && \
 asdf global nodejs 22.13.0'
 
-# asdf install java
-RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
-asdf plugin add java && \
-asdf install java liberica-21.0.5+12 && \
-asdf global java liberica-21.0.5+12'
-
+# asdf install python
 RUN apt-get update && apt-get install -y make build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
-# asdf install python
 RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
 asdf plugin add python && \
 asdf install python 3.13.1 && \
 asdf global python 3.13.1'
+
+# asdf install java
+RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
+asdf plugin add java && \
+asdf install java openjdk-21.0.2 && \
+asdf global java openjdk-21.0.2'
+
+RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
+asdf plugin add gradle && \
+asdf install gradle 8.12 && \
+asdf global gradle 8.12'
+
+RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
+asdf plugin add spring-boot && \
+asdf install spring-boot latest && \
+asdf global spring-boot latest'
 
 RUN service ssh start && \
 echo 'Port 2222 \n \

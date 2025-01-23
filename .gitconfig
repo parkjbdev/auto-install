@@ -1,3 +1,6 @@
 [user]
   email = dev@parkjb.com
   name = parkjbdev
+
+[credential]
+  helper = store
