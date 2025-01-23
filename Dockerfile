@@ -47,13 +47,22 @@ asdf global python 3.13.1'
 # asdf install java
 RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
 asdf plugin add java && \
-asdf install java openjdk-21.0.2 && \
-asdf global java openjdk-21.0.2'
+asdf install java openjdk-21.0.2'
 
 RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
 asdf plugin add gradle && \
 asdf install gradle 8.12 && \
 asdf global gradle 8.12'
+
+RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
+asdf plugin add java && \
+asdf install java openjdk-17.0.2 && \
+asdf global java openjdk-17.0.2'
+
+RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
+asdf plugin add maven && \
+asdf install maven latest && \
+asdf global maven latest'
 
 RUN /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
 asdf plugin add spring-boot && \
