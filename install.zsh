@@ -66,10 +66,10 @@ asdf plugin add spring-boot && \
 asdf install spring-boot latest && \
 asdf global spring-boot latest'
 
+cd $HOME/auto-install
 cp ./.zshrc $HOME/.zshrc
 cp ./.zshenv $HOME/.zshenv
 cp -r ./.config/lvim $HOME/.config/lvim
 cp ./.gitconfig $HOME/
-
 
 chsh -s /usr/bin/zsh
