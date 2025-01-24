@@ -10,7 +10,6 @@ sudo apt-get update && apt-get install -y gh
 # Install Shell
 sudo apt-get install -y zsh && \
 curl https://sh.rustup.rs -sSf | sh -s -- -y && \
-chsh -s /usr/bin/zsh && \
 $HOME/.cargo/bin/cargo install eza starship -q && \
 git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.local/share/zsh-autosuggestions && \
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.local/share/zsh-syntax-highlighting
@@ -71,3 +70,6 @@ cp ./.zshrc $HOME/.zshrc
 cp ./.zshenv $HOME/.zshenv
 cp -r ./.config/lvim $HOME/.config/lvim
 cp ./.gitconfig $HOME/
+
+
+chsh -s /usr/bin/zsh
