@@ -6,8 +6,8 @@ eval "$(starship init zsh)"
 source $HOME/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 fpath+=${ASDF_DIR}/completions
+fpath+=$HOME/.zfunc
 autoload -Uz compinit
 compinit
 
@@ -16,8 +16,7 @@ alias l="eza --icons --group-directories-first -lh"
 alias ll="eza --icons --group-directories-first -lh" 
 alias ls="eza --icons --group-directories-first" 
 alias cat="batcat" 
-alias vi="lvim" 
-alias python="python3" 
+alias vi="nvim" 
 alias fd="fdfind"
 
 export EDITOR="lvim" 

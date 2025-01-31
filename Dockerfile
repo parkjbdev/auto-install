@@ -23,7 +23,8 @@ cd $HOME/.neovim && \
 git checkout v0.10.1 && \
 make CMAKE_BUILD_TYPE=Release && \
 make install && \
-/usr/bin/zsh -c "$(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)"
+mkdir -p $HOME/.config/nvim && \
+git clone https://github.com/parkjbdev/NormalNvim.git $HOME/.config/nvim
 
 # asdf
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0

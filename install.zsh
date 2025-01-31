@@ -20,7 +20,8 @@ cd $HOME/.neovim && \
 git checkout v0.10.1 && \
 make CMAKE_BUILD_TYPE=Release && \
 sudo make install && \
-/usr/bin/zsh -c "$(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)"
+mkdir -p $HOME/.config/nvim && \
+git clone https://github.com/parkjbdev/NormalNvim.git $HOME/.config/nvim
 
 # asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
@@ -38,23 +39,32 @@ libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-d
 
 /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
 asdf plugin add python && \
-asdf install python 3.13.1 && \
-asdf global python 3.13.1'
+asdf install python latest && \
+asdf global python latest'
+
+# asdf install golang
+/bin/bash -c 'source $HOME/.asdf/asdf.sh && \
+asdf plugin add golang && \
+asdf install golang latest && \
+asdf global golang latest'
+
+# asdf install dotnet
+/bin/bash -c 'source $HOME/.asdf/asdf.sh && \
+asdf plugin add dotnet && \
+asdf install dotnet latest && \
+asdf global dotnet latest'
 
 # asdf install java
 /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
 asdf plugin add java && \
-asdf install java openjdk-21.0.2'
+asdf install java openjdk-17.0.2 && \
+asdf install java liberica-21.0.6+10 && \
+asdf global java liberica-21.0.6+10'
 
 /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
 asdf plugin add gradle && \
 asdf install gradle 8.12 && \
 asdf global gradle 8.12'
-
-/bin/bash -c 'source $HOME/.asdf/asdf.sh && \
-asdf plugin add java && \
-asdf install java openjdk-17.0.2 && \
-asdf global java openjdk-17.0.2'
 
 /bin/bash -c 'source $HOME/.asdf/asdf.sh && \
 asdf plugin add maven && \
@@ -69,7 +79,6 @@ asdf global spring-boot latest'
 cd $HOME/auto-install
 cp ./.zshrc $HOME/.zshrc
 cp ./.zshenv $HOME/.zshenv
-cp -r ./.config/lvim $HOME/.config/lvim
 cp ./.gitconfig $HOME/
 
 chsh -s /usr/bin/zsh
