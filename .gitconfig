@@ -4,6 +4,7 @@
 
 [credential]
   helper = store
+  quotepath = false
 
 [core]
   autocrlf = true
