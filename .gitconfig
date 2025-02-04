@@ -4,7 +4,16 @@
 
 [credential]
   helper = store
-  quotepath = false
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgSign = true
 
 [core]
   autocrlf = true
+  quotepath = false

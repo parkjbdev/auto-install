@@ -81,4 +81,7 @@ cp ./.zshrc $HOME/.zshrc
 cp ./.zshenv $HOME/.zshenv
 cp ./.gitconfig $HOME/
 
+ssh-keygen -t ed25519
+git config --global user.signingkey $HOME/.ssh/id_ed25519.pub
+
 chsh -s /usr/bin/zsh
