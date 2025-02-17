@@ -17,3 +17,6 @@
 [core]
   autocrlf = true
   quotepath = false
+
+[init]
+  defaultBranch = main
